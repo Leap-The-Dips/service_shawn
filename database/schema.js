@@ -1,25 +1,26 @@
 const mongoose = require('mongoose');
-const Promise = require('bluebird');
-const mongoUrl = 'mongodb://mongo:27017/description'
+// const Promise = require('bluebird');
+const mongoUrl = 'mongodb://127.0.0.1:27017/description';
+// const mongoUrl = 'mongodb://localhost/description';
 
-var connectWithRetry = function() {
+const connectWithRetry = () => {
   let count = 0;
-  return mongoose.connect(mongoUrl,{useUnifiedTopology: true, useNewUrlParser: true}, function(err){
+  return mongoose.connect(mongoUrl, { useUnifiedTopology: true, useNewUrlParser: true }, (err) => {
     if (err) {
       console.log('Failed mongo connect startup retry in 5 sec', err);
       if (count <= 5) {
-        setTimeout(connectWithRetry,5000);
-        count++
+        setTimeout(connectWithRetry, 5000);
+        count += 1;
       }
     }
-  })
-}
+  });
+};
 connectWithRetry();
 // mongoose.connect('mongodb://mongo:27017/description', {useUnifiedTopology: true, useNewUrlParser: true}).catch(err => console.log(err))
 
-var Schema = mongoose.Schema;
+let Schema = mongoose.Schema;
 
-var description = new Schema({
+const description = new Schema({
   item_number: Number,
   list_date: Date,
   item_spec: {
@@ -34,41 +35,41 @@ var description = new Schema({
     era: String,
     year: Number,
     size: Number,
-    upc: Number
+    upc: Number,
   },
   seller_msg: {
     prod_des: String,
     item_des: String,
-    img_url: String
-  }
-})
+    img_url: String,
+  },
+});
 
-var ship_pay = new Schema ({
+const ship_pay = new Schema({
   item_number: Number,
   ship_handling: {
     item_location: String,
     ship_to: String,
     ship_excludes: String,
-    qty: Number
+    qty: Number,
   },
   shipping_cost: {
     price: Number,
-    region:String,
+    region: String,
     service: String,
-    est_time: Date
+    est_time: Date,
   },
   return_policy: {
     exist: Boolean,
     deadline: Number,
     type: String,
-    pay_shipping: String
-  }
+    pay_shipping: String,
+  },
 });
 
-var Product = mongoose.model('Product', description);
-var Purchase = mongoose.model('Purchase', ship_pay)
+const Product = mongoose.model('Product', description);
+const Purchase = mongoose.model('Purchase', ship_pay);
 
 module.exports = {
   Product,
-  Purchase
-}
+  Purchase,
+};

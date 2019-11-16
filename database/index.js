@@ -1,46 +1,46 @@
 const { Product, Purchase } = require('./schema.js');
 
-let query = (item, cb) => {
-  let prodInfo = [];
-  queryProd(item, (err,res) => {
+const query = (item, cb) => {
+  const prodInfo = [];
+  queryProd(item, (err, res) => {
     if (err) {
-      cb(err)
+      cb(err);
     } else {
-      prodInfo.push(res)
+      prodInfo.push(res);
       queryPurc(item, (err, res) => {
         if (err) {
-          cb(err)
+          cb(err);
         } else {
           prodInfo.push(res);
-          cb(null, prodInfo)
+          cb(null, prodInfo);
         }
       });
     }
   });
-}
+};
 
-let queryProd = (itemNum,cb) => {
-  Product.findOne({'item_number':itemNum}, (err,res) => {
+let queryProd = (itemNum, cb) => {
+  Product.findOne({ item_number: itemNum }, (err, res) => {
     if (err) {
-      cb(err)
+      cb(err);
     } else {
-      cb(null,res)
+      cb(null, res);
     }
-  })
-}
+  });
+};
 
-let queryPurc = (itemNum,cb) => {
-  Purchase.findOne({'item_number': itemNum}, (err,res) => {
-      if (err) {
-        cb(err)
-      } else {
-        cb(null,res)
-      }
-  })
-}
+let queryPurc = (itemNum, cb) => {
+  Purchase.findOne({ item_number: itemNum }, (err, res) => {
+    if (err) {
+      cb(err);
+    } else {
+      cb(null, res);
+    }
+  });
+};
 
 module.exports = {
   query,
   queryProd,
-  queryPurc
-}
+  queryPurc,
+};
