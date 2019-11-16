@@ -33,7 +33,8 @@ class App extends React.Component {
   handleSPClick() {
     this.setState({ page: 1 });
   }
-//  conditional rendering here is a work around for an asycn bug that was crashing the app.  The first render had nothing in state so was passing undefined.  Now code waits for get request res before rendering components
+
+  //  conditional rendering here is a work around for an asycn bug that was crashing the app.  The first render had nothing in state so was passing undefined.  Now code waits for get request res before rendering components
   render() {
     if (this.state.data.length < 1) {
       return <p data-test="default">loading</p>;
@@ -80,7 +81,7 @@ const Report = styled.div`
   padding-right: 20px;
 `;
 const Button = styled.button`
-  background: ${(props) => props.tab === 0 ? 'white' : '#f2f2f2'};
+  background: ${(props) => (props.tab === 0 ? 'white' : '#f2f2f2')};
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   border: 1px solid #cccccc;
@@ -89,14 +90,14 @@ const Button = styled.button`
   padding: 5px 10px 5px 10px;
   cursor: pointer;
   outline:0;
-  box-shadow: ${(props) => props.tab === 0 ? '3px -1.5px #e6e3e3' : ' 0px 0px #cccccc'}
-  border-bottom: ${(props) => props.tab === 0 ? '1px solid white' : '1px solid #cccccc'}
+  box-shadow: ${(props) => (props.tab === 0 ? '3px -1.5px #e6e3e3' : ' 0px 0px #cccccc')}
+  border-bottom: ${(props) => (props.tab === 0 ? '1px solid white' : '1px solid #cccccc')}
   z-index: 1
 `;
 const SPButton = styled(Button)`
-  background: ${(props) => props.tab === 1 ? 'white' : '#f2f2f2'};
-  border-bottom: ${(props) => props.tab === 1 ? '1px solid white' : '1px solid #cccccc'}
-  box-shadow: ${(props) => props.tab === 1 ? '3px -1.5px #e6e3e3' : ' 0px 0px #cccccc'}
+  background: ${(props) => (props.tab === 1 ? 'white' : '#f2f2f2')};
+  border-bottom: ${(props) => (props.tab === 1 ? '1px solid white' : '1px solid #cccccc')}
+  box-shadow: ${(props) => (props.tab === 1 ? '3px -1.5px #e6e3e3' : ' 0px 0px #cccccc')}
   z-index: 0
 `;
 const Content = styled.div`

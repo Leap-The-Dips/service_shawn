@@ -23,5 +23,38 @@ app.get('/description', (req, res) => {
   });
 });
 
+app.post('/description', (req, res) => {
+  let id = req.query.prod_id;
+  id = Number(id);
+  db.add(id, (err) => {
+    if (err) {
+      res.send(err);
+    }
+  });
+  res.end();
+});
+
+app.put('/description', (req, res) => {
+  let id = req.query.prod_id;
+  id = Number(id);
+  db.update(id, (err) => {
+    if (err) {
+      res.send(err);
+    }
+  });
+  res.end();
+});
+
+app.delete('/description', (req, res) => {
+  let id = req.query.prod_id;
+  id = Number(id);
+  db.remove(id, (err) => {
+    if (err) {
+      res.send(err);
+    }
+    res.end();
+  });
+});
+
 
 module.exports = app;
