@@ -52,8 +52,8 @@ app.delete('/description', (req, res) => {
     if (err) {
       res.send(err);
     }
-    res.end();
   });
+  res.end();
 });
 
 
