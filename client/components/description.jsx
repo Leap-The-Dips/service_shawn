@@ -1,3 +1,6 @@
+/* eslint-disable camelcase */
+/* eslint-disable react/require-default-props */
+/* eslint-disable no-restricted-syntax */
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';

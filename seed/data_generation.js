@@ -22,7 +22,7 @@ function writeTenMillionTimes(writerMethod, encoding, callback) {
       index += 1;
       const data = {
         item_number: index,
-        list_date: faker.date.recent(),
+        list_date: moment(faker.date.recent()).format(),
         // item_Spec: {
         condition: faker.lorem.word(),
         brand: (exists()) ? faker.commerce.productName() : null,
