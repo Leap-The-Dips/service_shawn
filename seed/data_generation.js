@@ -6,14 +6,14 @@ const csvWriter = require('csv-write-stream');
 
 const writer = csvWriter();
 
-writer.pipe(fs.createWriteStream('./data.csv', { encoding: 'utf-8' }));
+writer.pipe(fs.createWriteStream('./mock_data.csv', { encoding: 'utf-8' }));
 
 const exists = () => (
   Math.floor(Math.random() * 2)
 );
 
 function writeTenMillionTimes(writerMethod, encoding, callback) {
-  let i = 10000000;
+  let i = 100;
   let index = 0;
   function write() {
     let ok = true;
@@ -23,7 +23,6 @@ function writeTenMillionTimes(writerMethod, encoding, callback) {
       const data = {
         item_number: index,
         list_date: faker.date.recent(),
-        // item_Spec: {
         condition: faker.lorem.word(),
         brand: (exists()) ? faker.commerce.productName() : null,
         type: (exists()) ? faker.lorem.words() : null,
@@ -36,7 +35,9 @@ function writeTenMillionTimes(writerMethod, encoding, callback) {
         year: (exists()) ? moment(faker.date.past()).format('YYYY') : null,
         size: (exists()) ? faker.random.number() : null,
         upc: (exists()) ? faker.random.number() : null,
-        // },
+        prod_des: faker.lorem.paragraphs(),
+        item_des: faker.lorem.sentence(),
+        img_url: 'http://lorempixel.com/640/480/technics/',
       };
       if (i === 0) {
         // last time!
