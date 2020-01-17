@@ -6,14 +6,14 @@ const csvWriter = require('csv-write-stream');
 
 const writer = csvWriter();
 
-writer.pipe(fs.createWriteStream('./mock_data.csv', { encoding: 'utf-8' }));
+writer.pipe(fs.createWriteStream('./seed/data.csv', { encoding: 'utf-8' }));
 
 const exists = () => (
   Math.floor(Math.random() * 2)
 );
 
 function writeTenMillionTimes(writerMethod, encoding, callback) {
-  let i = 100;
+  let i = 10000000;
   let index = 0;
   function write() {
     let ok = true;
@@ -22,7 +22,7 @@ function writeTenMillionTimes(writerMethod, encoding, callback) {
       index += 1;
       const data = {
         item_number: index,
-        list_date: faker.date.recent(),
+        list_date: moment(faker.date.recent()).format('YYYY-MM-DD LTS'),
         condition: faker.lorem.word(),
         brand: (exists()) ? faker.commerce.productName() : null,
         type: (exists()) ? faker.lorem.words() : null,

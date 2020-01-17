@@ -12,6 +12,7 @@
     "start": "webpack",
     "build": "webpack -d --watch",
     "seed": "node seed.js",
+    "large_seed": "node seed/data_generation.js",
     "test": "jest --detectOpenHandles",
     "builds3": "NODE_ENV='production' grunt aws_s3:bundle"
   },
