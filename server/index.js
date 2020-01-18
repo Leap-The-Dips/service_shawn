@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 // const querystring = require('querystring');
 // const url = require('url');
 const cors = require('cors');
+// const db = require('../database/index.js');
 const db = require('../database/index.js');
 
 const app = express();
@@ -25,38 +26,38 @@ app.get('/description', (req, res) => {
   });
 });
 
-app.post('/description', (req, res) => {
-  let id = req.query.prod_id;
-  id = Number(id);
-  db.add(id, (err) => {
-    if (err) {
-      res.send(err);
-    }
-  });
-  res.end();
-});
+// app.post('/description', (req, res) => {
+//   let id = req.query.prod_id;
+//   id = Number(id);
+//   db.add(id, (err) => {
+//     if (err) {
+//       res.send(err);
+//     }
+//   });
+//   res.end();
+// });
 
-app.put('/description', (req, res) => {
-  let id = req.query.prod_id;
-  id = Number(id);
-  db.update(id, (err) => {
-    if (err) {
-      res.send(err);
-    }
-  });
-  res.end();
-});
+// app.put('/description', (req, res) => {
+//   let id = req.query.prod_id;
+//   id = Number(id);
+//   db.update(id, (err) => {
+//     if (err) {
+//       res.send(err);
+//     }
+//   });
+//   res.end();
+// });
 
-app.delete('/description', (req, res) => {
-  let id = req.query.prod_id;
-  id = Number(id);
-  db.remove(id, (err) => {
-    if (err) {
-      res.send(err);
-    }
-  });
-  res.end();
-});
+// app.delete('/description', (req, res) => {
+//   let id = req.query.prod_id;
+//   id = Number(id);
+//   db.remove(id, (err) => {
+//     if (err) {
+//       res.send(err);
+//     }
+//   });
+//   res.end();
+// });
 
 
 module.exports = app;
