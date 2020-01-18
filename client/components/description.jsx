@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -7,11 +8,11 @@ function Description({
   prodInfo,
   prodInfo: { seller_msg },
 }) {
-  const specs = prodInfo.item_Spec;
+  const specs = prodInfo.item_spec;
   const arr = [];
   //  for in loop to filter out item specs with no data
   for (const key in specs) {
-    if (specs[key] !== '') {
+    if (specs[key] !== null) {
       switch (key) {
         case 'condition':
           arr.push('Condition:');
@@ -109,7 +110,7 @@ Description.propTypes = {
   prodInfo: PropTypes.shape({
     item_number: PropTypes.number,
     list_date: PropTypes.string,
-    item_Spec: PropTypes.object,
+    item_spec: PropTypes.object,
     seller_msg: PropTypes.shape({
       prod_des: PropTypes.string,
       item_des: PropTypes.string,
